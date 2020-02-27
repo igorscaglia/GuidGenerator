@@ -35,19 +35,20 @@ test:
         code: |
           dotnet test
 finalize:
-  - script:
-      name: copy published app
-      code: |
-        cp -r GuidGenerator.API/publish $WERCKER_OUTPUT_DIR/app
-  - script:
-      name: copy entrypoint script
-      code: |
-        cp -r entrypoint.sh $WERCKER_OUTPUT_DIR/app
-  - script:
-      name: chmod
-      cwd: $WERCKER_OUTPUT_DIR/app
-      code: |
-        chmod +x ./entrypoint.sh
+  steps:
+    - script:
+        name: copy published app
+        code: |
+          cp -r GuidGenerator.API/publish $WERCKER_OUTPUT_DIR/app
+    - script:
+        name: copy entrypoint script
+        code: |
+          cp -r entrypoint.sh $WERCKER_OUTPUT_DIR/app
+    - script:
+        name: chmod
+        cwd: $WERCKER_OUTPUT_DIR/app
+        code: |
+          chmod +x ./entrypoint.sh
 deploy:
   steps:
     - internal/docker-push:
