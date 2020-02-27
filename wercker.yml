@@ -4,17 +4,17 @@ build:
   steps:
     - script:
         name: restore-api
-        cwd: src/GuidGenerator.API/
+        cwd: GuidGenerator.API/
         code: |
           dotnet restore
     - script:
         name: build-api
-        cwd: src/GuidGenerator.API/
+        cwd: GuidGenerator.API/
         code: |
           dotnet build
     - script:
         name: publish-api
-        cwd: src/GuidGenerator.API/
+        cwd: GuidGenerator.API/
         code: |
           dotnet publish -c Release -o publish
 test:
@@ -38,11 +38,11 @@ finalize:
   - script:
       name: copy published app
       code: |
-        cp -r src/GuidGenerator.API/publish $WERCKER_OUTPUT_DIR/app
+        cp -r GuidGenerator.API/publish $WERCKER_OUTPUT_DIR/app
   - script:
       name: copy entrypoint script
       code: |
-        cp -r src/GuidGenerator.API/entrypoint.sh $WERCKER_OUTPUT_DIR/app
+        cp -r entrypoint.sh $WERCKER_OUTPUT_DIR/app
   - script:
       name: chmod
       cwd: $WERCKER_OUTPUT_DIR/app
