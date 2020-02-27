@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /pipeline/source/app/publish
-dotnet GuidGenerator.dll
+cd /pipeline/source/app
+dotnet GuidGenerator.API.dll
