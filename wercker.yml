@@ -58,5 +58,5 @@ deploy:
       repository: igorscaglia/guidgenerator
       registry: https://registry.hub.docker.com/v2
       entrypoint: "/pipeline/source/app/entrypoint.sh"
-      ports: "80"
-env: "ASPNETCORE_URLS=http://+:80"
+      ports: "5000"
+env: "ASPNETCORE_URLS=http://*:5000"
