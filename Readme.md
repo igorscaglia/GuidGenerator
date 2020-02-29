@@ -14,9 +14,7 @@ Esse microserviço gera de forma aleatório Guids de acordo com o parâmetro sol
 
 # Informações sobre o Wercker
 
-- O arquivo wercker.yml está dividido em 2 grandes pipelines para exemplificar de forma bem clara a integração contínua - CI e a entrega contínua - CD.
-
-- É preciso criar uma nova aplicação no portal [Wercker](https://app.wercker.com/)
+- É preciso criar uma nova aplicação no portal [Wercker](https://app.wercker.com/).
 
 - É preciso criar e configurar a ordem dos pipelines pela aba 'Workflows' no portal [Wercker](https://app.wercker.com/) como: build > test > publish > deploy.
 
