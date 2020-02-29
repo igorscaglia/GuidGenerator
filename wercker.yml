@@ -1,41 +1,43 @@
-box: mcr.microsoft.com/dotnet/core/sdk:3.1
 no-response-timeout: 10
-build:
-  steps:
-    - script:
-        name: restore-api
-        cwd: GuidGenerator.API/
-        code: |
-          dotnet restore
-    - script:
-        name: build-api
-        cwd: GuidGenerator.API/
-        code: |
-          dotnet build
-    - script:
-        name: publish-api
-        cwd: GuidGenerator.API/
-        code: |
-          dotnet publish -c Release -o publish
-test:
-  steps:
-    - script:
-        name: test-restore
-        cwd: GuidGenerator.API.Test/          
-        code: |
-          dotnet restore
-    - script:
-        name: test-build
-        cwd: GuidGenerator.API.Test/          
-        code: |
-          dotnet build
-    - script:
-        name: test-run
-        cwd: GuidGenerator.API.Test/          
-        code: |
-          dotnet test
-finalize:
-  steps:
+integration:
+  box: mcr.microsoft.com/dotnet/core/sdk:3.1
+  build:
+    steps:
+      - script:
+          name: restore-api
+          cwd: GuidGenerator.API/
+          code: |
+            dotnet restore
+      - script:
+          name: build-api
+          cwd: GuidGenerator.API/
+          code: |
+            dotnet build
+      - script:
+          name: publish-api
+          cwd: GuidGenerator.API/
+          code: |
+            dotnet publish -c Release -o publish
+  test:
+    steps:
+      - script:
+          name: test-restore
+          cwd: GuidGenerator.API.Test/          
+          code: |
+            dotnet restore
+      - script:
+          name: test-build
+          cwd: GuidGenerator.API.Test/          
+          code: |
+            dotnet build
+      - script:
+          name: test-run
+          cwd: GuidGenerator.API.Test/          
+          code: |
+            dotnet test
+delivery:
+  box: mcr.microsoft.com/dotnet/core/aspnet:3.1
+  publish:
     - script:
         name: copy published app
         code: |
@@ -49,14 +51,13 @@ finalize:
         cwd: $WERCKER_OUTPUT_DIR/app
         code: |
           chmod +x ./entrypoint.sh
-deploy:
-  steps:
-    - internal/docker-push:
-      username: $USERNAME
-      password: $PASSWORD
-      tag: latest, 1.0
-      repository: igorscaglia/guidgenerator
-      registry: https://registry.hub.docker.com/v2
-      entrypoint: "/pipeline/source/app/entrypoint.sh"
-      ports: "5000"
-env: "ASPNETCORE_URLS=http://*:5000"
+  deploy:
+    steps:
+      - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        tag: $TAG
+        repository: $REPOSITORY
+        registry: https://registry.hub.docker.com/v2
+        entrypoint: "/pipeline/source/app/entrypoint.sh"
+        ports: "80"
