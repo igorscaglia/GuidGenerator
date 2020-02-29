@@ -2,7 +2,7 @@
 
 Guid Generator é um microserviço RESTful Web Api criado em .NET Core 3.1 que tem o intuito de servir como base para testes de CI e CD com Wercker.
 
-# Serviços da Web API
+# Exemplos
 
 Esse microserviço gera de forma aleatório Guids de acordo com o parâmetro solicitado:
 
@@ -18,6 +18,6 @@ Esse microserviço gera de forma aleatório Guids de acordo com o parâmetro sol
 
 - É preciso criar uma nova aplicação no portal [Wercker](https://app.wercker.com/)
 
-- É preciso configurar a ordem dos pipelines pela aba 'Workflows' no portal (Wercker)[https://app.wercker.com/].
+- É preciso criar e configurar a ordem dos pipelines pela aba 'Workflows' no portal [Wercker](https://app.wercker.com/) como: build > test > publish > deploy.
 
-- É preciso criar as variáveis de ambiente USERNAME, PASSWORD e REPOSITORY e TAG pela aba 'Environment' no portal (Wercker)[https://app.wercker.com/].
+- É preciso criar as variáveis de ambiente USERNAME, PASSWORD, REPOSITORY e TAG pela aba 'Environment' no portal [Wercker](https://app.wercker.com/).

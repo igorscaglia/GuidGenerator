@@ -59,5 +59,4 @@ deploy:
       repository: $REPOSITORY
       registry: https://registry.hub.docker.com/v2
       entrypoint: "/pipeline/source/app/entrypoint.sh"
-      ports: $PORT
-env: "ASPNETCORE_URLS=http://*:$PORT"
+      ports: "80"

@@ -1,0 +1,4 @@
+
+/.wercker
+bin/
+obj/
